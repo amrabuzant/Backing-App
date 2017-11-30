@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="300dp"
+    android:minHeight="300dp"
     android:background="#b46b1d"
     android:padding="@dimen/widget_margin">
-
     <TextView
         android:id="@+id/appWidgetTextView"
         android:layout_width="wrap_content"
@@ -13,7 +14,8 @@
         android:layout_margin="8dp"
         android:background="#b46b1d"
         android:textColor="#000000"
-        android:textSize="5sp"
+        android:textSize="15sp"
+        android:maxLines="10"
+        android:scrollbars = "vertical"
          />
-
 </RelativeLayout>

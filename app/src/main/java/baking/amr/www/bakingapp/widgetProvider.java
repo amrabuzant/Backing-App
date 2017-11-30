@@ -39,6 +39,7 @@ public class widgetProvider extends AppWidgetProvider {
         PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent,0);
         views.setOnClickPendingIntent(R.id.appWidgetTextView,pendingIntent);
         views.setTextViewText(R.id.appWidgetTextView,ingredients);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
