@@ -22,9 +22,7 @@
         <activity
             android:name="RecipeDetailActivity"
             android:label="@string/DetailLabel"
-            android:parentActivityName="MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
-
+            android:parentActivityName="MainActivity"/>
 
         <receiver android:name=".widgetProvider">
             <intent-filter>

@@ -36,7 +36,7 @@ public class StepDetailFragment extends Fragment {
 
     private TextView stepSecription;
     private ImageView thumbnail;
-
+    private long position;
 
 
     public StepDetailFragment(){
@@ -48,7 +48,8 @@ public class StepDetailFragment extends Fragment {
         View rootView=inflater.inflate(R.layout.fragment_step_detail,container,false);
         if(savedInstanceState!=null)
         {
-            step=savedInstanceState.getParcelable("step");
+            step = savedInstanceState.getParcelable("step");
+            position = savedInstanceState.getLong("position");
         }
 
         stepSecription=(TextView)rootView.findViewById(R.id.stepDescriptionTextView);
@@ -96,6 +97,7 @@ public class StepDetailFragment extends Fragment {
             String userAgent = Util.getUserAgent(getContext(), "bakingapp");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
+            if (position > 0 ) simpleExoPlayer.seekTo(position);
             simpleExoPlayer.prepare(mediaSource);
             simpleExoPlayer.setPlayWhenReady(true);
         }
@@ -133,13 +135,16 @@ public class StepDetailFragment extends Fragment {
     public void onPause() {
         super.onPause();
         if (simpleExoPlayer!=null) {
+            position = simpleExoPlayer.getCurrentPosition();
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState)
+    {
+        outState.putLong("position",position);
         outState.putParcelable("step",step);
     }
 
